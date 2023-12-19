@@ -29,6 +29,14 @@ public class User {
 	@ManyToMany(mappedBy="viewers")
 	private Set<Video> viewedVideos;
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "likes")
+	private Set<Video> likedVideos;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "dislikes")
+	private Set<Video> dislikedVideos;
+	
 	public Long getId() {
 		return id;
 	}
@@ -52,5 +60,20 @@ public class User {
 	public void setViewedVideos(Set<Video> viewedVideos) {
 		this.viewedVideos = viewedVideos;
 	}
+	
+	public Set<Video> getLikedVideos() {
+		return likedVideos;
+	}
 
+	public void setLikedVideos(Video video) {
+		this.likedVideos.add(video);
+	}
+
+	public Set<Video> getDislikedVideos() {
+		return dislikedVideos;
+	}
+
+	public void setDislikedVideos(Video video) {
+		this.dislikedVideos.add(video);
+	}
 }

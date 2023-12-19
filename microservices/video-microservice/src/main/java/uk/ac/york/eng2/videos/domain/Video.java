@@ -44,8 +44,14 @@ public class Video {
 	private Set<User> viewers;
 	
 	private boolean viewed;
-	private int likes;
-	private int dislikes;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "video_user_likes")
+	private Set<User> likes;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "video_user_dislikes")
+	private Set<User> dislikes;
 	
 	
 	public Long getId() {
@@ -96,26 +102,20 @@ public class Video {
 		this.viewed = viewed;
 	}
 
-	public int getLikes() {
+	public Set<User> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-	public void addLike() {
-		this.likes++;
+	public void setLikes(User user) {
+		this.likes.add(user);
 	}
 
-	public int getDislikes() {
+	public Set<User> getDislikes() {
 		return dislikes;
 	}
 
-	public void setDislikes(int dislikes) {
-		this.dislikes = dislikes;
-	}
-	public void addDislike() {
-		this.dislikes++;
+	public void setDislikes(User user) {
+		this.dislikes.add(user);
 	}
 	
 }

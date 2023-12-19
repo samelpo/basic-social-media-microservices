@@ -78,9 +78,7 @@ public class VideosController {
 		User user = oUser.get();
 		if (video.getViewers().add(user)) {
 			video.setViewed(true);
-			user.getViewedVideos().add(video);
 			repo.update(video);
-			userRepo.update(user);
 			//producer.viewerWatched(videoId, video);
 		}
 		
@@ -89,32 +87,55 @@ public class VideosController {
 	}
 	
     @Transactional
-    @Put("/{videoId}/likes")
-	public HttpResponse<String> addLike(long videoId) {
+    @Put("/{videoId}/likes/{userId}")
+	public HttpResponse<String> addLike(long videoId, long userId) {
     	Optional<Video> oVideo = repo.findById(videoId);
 		if (oVideo.isEmpty()) {
 			return HttpResponse.notFound(String.format("Video %d not found", videoId));
 		}
 		
-		Video video = oVideo.get();
+		Optional<User> oUser = userRepo.findById(userId);
+		if (oUser.isEmpty()) {
+			return HttpResponse.notFound(String.format("User %d not found", userId));
+		}
 		
-		video.addLike();
-		repo.update(video);
+		Video video = oVideo.get();
+		User user = oUser.get();
+		
+		if (video.getLikes().add(user)) {
+			video.setViewed(true);
+			
+			repo.update(video);
+			//TODO: producer.viewerWatched(videoId, video);
+		}
+		
 		
 		return HttpResponse.ok(String.format("Liked video %d", videoId));
 
     }
     @Transactional
-    @Put("/{videoId}/dislikes")
-	public HttpResponse<String> addDislike(long videoId) {
+    @Put("/{videoId}/dislikes/{userId}")
+	public HttpResponse<String> addDislike(long videoId, long userId) {
     	Optional<Video> oVideo = repo.findById(videoId);
 		if (oVideo.isEmpty()) {
 			return HttpResponse.notFound(String.format("Video %d not found", videoId));
 		}
-		Video video = oVideo.get();
 		
-		video.addDislike();
-		repo.update(video);
+		Optional<User> oUser = userRepo.findById(userId);
+		if (oUser.isEmpty()) {
+			return HttpResponse.notFound(String.format("User %d not found", userId));
+		}
+		
+		Video video = oVideo.get();
+		User user = oUser.get();
+		
+		if (video.getDislikes().add(user)) {
+			video.setViewed(true);
+			
+			repo.update(video);
+			//TODO: producer.viewerWatched(videoId, video);
+		}
+		
 		return HttpResponse.ok(String.format("Disliked video %d", videoId));
 
     }

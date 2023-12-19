@@ -25,9 +25,9 @@ public interface VideosClient {
 	@Put("/{videoId}/viewer/{userId}")
 	public HttpResponse<String> addViewer(long videoId, long userId);
 	
-	@Put("/{videoId}/likes")
-	public HttpResponse<String> addLike(long videoId);
+	@Put("/{videoId}/likes/{userId}")
+	public HttpResponse<String> addLike(long videoId, long userId);
 	
-	@Put("/{videoId}/dislikes")
-	public HttpResponse<String> addDislike(long videoId);
+	@Put("/{videoId}/dislikes/{userId}")
+	public HttpResponse<String> addDislike(long videoId, long userId);
 }

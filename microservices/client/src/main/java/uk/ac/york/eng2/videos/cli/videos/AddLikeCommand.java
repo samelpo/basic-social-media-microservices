@@ -15,9 +15,12 @@ public class AddLikeCommand implements Runnable{
 	@Parameters(index="0")
 	private Long videoId;
 	
+	@Parameters(index="1")
+	private Long userId;
+	
 	@Override
 	public void run() {
-		HttpResponse<String> response = client.addLike(videoId);
+		HttpResponse<String> response = client.addLike(videoId, userId);
 		System.out.printf("Server responded with status %s: %s%n",
 			response.getStatus(), response.getBody().orElse("(no text)"));
 		

@@ -2,6 +2,7 @@ package uk.ac.york.eng2.videos.cli.domain;
 
 
 import java.util.List;
+import java.util.Set;
 
 import io.micronaut.serde.annotation.Serdeable;
 
@@ -14,12 +15,9 @@ public class Video {
 	private List<String> hashtags;
 	private Long id;
 	private boolean viewed;
-	private int likes;
-	private int dislikes;
-	
-	//@JsonIgnore
-	//@ManyToMany
-	//private Set<User> viewers;
+	private Set<User> likes;
+	private Set<User> dislikes;
+	private Set<User> viewers;
 	
 	public Long getId() {
 		return id;
@@ -57,14 +55,14 @@ public class Video {
 	public void setHashtags(List<String> hashtags) {
 		this.hashtags = hashtags;
 	}
-	/*
+	
 	public Set<User> getViewers() {
 		return viewers;
 	}
 
 	public void setViewers(Set<User> viewers) {
 		this.viewers = viewers;
-	} */
+	}
 
 	public boolean isViewed() {
 		return viewed;
@@ -74,23 +72,20 @@ public class Video {
 		this.viewed = viewed;
 	}
 
-	public int getLikes() {
+	public Set<User> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
-	public void addLike() {
-		this.likes++;
+	public void setLikes(User user) {
+		this.likes.add(user);
 	}
 
-	public int getDislikes() {
+	public Set<User> getDislikes() {
 		return dislikes;
 	}
 
-	public void setDislikes(int dislikes) {
-		this.dislikes = dislikes;
+	public void setDislikes(User user) {
+		this.dislikes.add(user);
 	}
 
 	@Override
