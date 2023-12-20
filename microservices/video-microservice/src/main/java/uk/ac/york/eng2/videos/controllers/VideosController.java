@@ -15,6 +15,7 @@ import jakarta.inject.Inject;
 import uk.ac.york.eng2.videos.domain.User;
 import uk.ac.york.eng2.videos.domain.Video;
 import uk.ac.york.eng2.videos.dto.VideoDTO;
+import uk.ac.york.eng2.videos.events.VideosProducer;
 import uk.ac.york.eng2.videos.repositories.UsersRepository;
 import uk.ac.york.eng2.videos.repositories.VideosRepository;
 
@@ -26,6 +27,9 @@ public class VideosController {
 	
 	@Inject
 	UsersRepository userRepo;
+	
+	@Inject
+	VideosProducer producer;
 	
 	@Get("/")
 	public Iterable<Video> list() {
@@ -44,6 +48,8 @@ public class VideosController {
     		video.setHashtags(videoDetails.getHashtags());
     		
     		repo.save(video);
+    		
+    		producer.postVideo(video.getId(), video);
     		
     		return HttpResponse.created(URI.create("/videos/" + video.getId()));
         } else {
@@ -79,7 +85,7 @@ public class VideosController {
 		if (video.getViewers().add(user)) {
 			video.setViewed(true);
 			repo.update(video);
-			//producer.viewerWatched(videoId, video);
+			producer.viewedVideo(videoId, video);
 		}
 		
 
@@ -106,11 +112,11 @@ public class VideosController {
 			video.setViewed(true);
 			
 			repo.update(video);
-			//TODO: producer.viewerWatched(videoId, video);
+			producer.likeVideo(videoId, video);
 		}
 		
 		
-		return HttpResponse.ok(String.format("Liked video %d", videoId));
+		return HttpResponse.ok(String.format("Liked video %s", video.getTitle()));
 
     }
     @Transactional
@@ -133,10 +139,10 @@ public class VideosController {
 			video.setViewed(true);
 			
 			repo.update(video);
-			//TODO: producer.viewerWatched(videoId, video);
+			producer.dislikeVideo(videoId, video);
 		}
 		
-		return HttpResponse.ok(String.format("Disliked video %d", videoId));
+		return HttpResponse.ok(String.format("Disliked video %s", video.getTitle()));
 
     }
 }
