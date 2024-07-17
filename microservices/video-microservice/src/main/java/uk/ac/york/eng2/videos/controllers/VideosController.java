@@ -49,7 +49,7 @@ public class VideosController {
     		
     		repo.save(video);
     		
-    		producer.postVideo(video.getId(), video);
+    		producer.postVideo(video.getId(), videoDetails);
     		
     		return HttpResponse.created(URI.create("/videos/" + video.getId()));
         } else {
@@ -113,6 +113,7 @@ public class VideosController {
 			
 			repo.update(video);
 			producer.likeVideo(videoId, video);
+			producer.viewedVideo(videoId, video);
 		}
 		
 		
@@ -139,7 +140,7 @@ public class VideosController {
 			video.setViewed(true);
 			
 			repo.update(video);
-			producer.dislikeVideo(videoId, video);
+			// producer.dislikeVideo(videoId, video);
 		}
 		
 		return HttpResponse.ok(String.format("Disliked video %s", video.getTitle()));

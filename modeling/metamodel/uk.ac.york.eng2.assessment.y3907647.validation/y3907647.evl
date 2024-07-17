@@ -1,0 +1,13 @@
+context Model {
+	constraint MinOneMicroservice {
+		check: self.microservices.size() > 0
+		
+		message: "There needs to be atleast one microservice"
+	}
+	
+	constraint EveryEventUsedInEventStreams {
+		check: self.eventStreams.eventAssociated -> forAll(e | e -> notEmpty())
+		
+		message: "Every event must be used in at least one event stream"
+	}
+}

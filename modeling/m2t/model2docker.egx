@@ -1,0 +1,15 @@
+pre{
+var startPort: Integer = 8080;
+}
+
+rule Model2App
+		transform m : Model {
+		
+		template : "model2docker.egl"
+			
+		parameters : Map{
+			"portNum" = startPort
+		}
+				
+		target : "m2t/docker-compose.yml"
+}

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="video" xmi:id="_KcaiMLPaEe6bTMIfH6713A">
+  <microservices xmi:id="_UHYEQLPdEe6bTMIfH6713A" name="video-microservice" subbedTo="_W9FtILPdEe6bTMIfH6713A" publishesTo="_ZKQvULPdEe6bTMIfH6713A _YjylMLPdEe6bTMIfH6713A _cme-kLPdEe6bTMIfH6713A _W9FtILPdEe6bTMIfH6713A">
+    <apiResources xmi:id="_wwW24LPdEe6bTMIfH6713A" name="list" path="/users">
+      <requestParameters xmi:id="_ZnWegLPeEe6bTMIfH6713A" name="request" fieldType="void"/>
+      <responseParameters xmi:id="_Z_VgsLPeEe6bTMIfH6713A">
+        <body xmi:id="_ulZlwLPeEe6bTMIfH6713A" name="response" fieldType="Iterable&lt;User>"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_1QFxkLPdEe6bTMIfH6713A" name="add" method="POST" path="/users">
+      <requestParameters xmi:id="_0V0FMLPeEe6bTMIfH6713A" name="request user details" fieldType="UserDTO"/>
+      <responseParameters xmi:id="_0nK68LPeEe6bTMIfH6713A" response="user created">
+        <body xmi:id="_-bNn4LPeEe6bTMIfH6713A" name="response" fieldType="void"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_3eGhQLPdEe6bTMIfH6713A" name="getUser" path="/user/id">
+      <requestParameters xmi:id="_CZ8HQLPfEe6bTMIfH6713A" name="request user id" fieldType="long"/>
+      <responseParameters xmi:id="_CpjQkLPfEe6bTMIfH6713A" response="user">
+        <body xmi:id="_ITacELPfEe6bTMIfH6713A" name="response" fieldType="UserDTO"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_6KEYQLPdEe6bTMIfH6713A" name="getViewed" path="/users/id/viewedVideos">
+      <requestParameters xmi:id="_NzTMMLPfEe6bTMIfH6713A" name="request user id" fieldType="long"/>
+      <responseParameters xmi:id="_OE-LALPfEe6bTMIfH6713A" response="users viewed videos">
+        <body xmi:id="_Qz3aMLPfEe6bTMIfH6713A" name="response" fieldType="Iterable&lt;Video>"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_9cX2gLPdEe6bTMIfH6713A" name="addViewer" method="PUT" path="/video/videoId/viewer/userId">
+      <requestParameters xmi:id="_bCOroLPfEe6bTMIfH6713A" name="request video id" fieldType="long"/>
+      <requestParameters xmi:id="_vycyQLPfEe6bTMIfH6713A" name="request user id" fieldType="long"/>
+      <responseParameters xmi:id="_bTv5cLPfEe6bTMIfH6713A" response="user added as viewer of video">
+        <body xmi:id="_xZoygLPfEe6bTMIfH6713A" name="response" fieldType="void"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_BMsGcLPeEe6bTMIfH6713A" name="getViewers" path="/videos/videoId/viewers">
+      <requestParameters xmi:id="_5aRBELPfEe6bTMIfH6713A" name="request video id" fieldType="long"/>
+      <responseParameters xmi:id="_526g0LPfEe6bTMIfH6713A" response="viewers of the video">
+        <body xmi:id="_LjhsgLPgEe6bTMIfH6713A" name="response" fieldType="Iterable&lt;User>"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_JHzi4LPeEe6bTMIfH6713A" name="add" method="POST" path="/vidoes">
+      <requestParameters xmi:id="_eS39ALPfEe6bTMIfH6713A" name="request video details" fieldType="videoDTO"/>
+      <responseParameters xmi:id="_ep1EcLPfEe6bTMIfH6713A" response="video created">
+        <body xmi:id="_qCtBMLPfEe6bTMIfH6713A" name="response" fieldType="void"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_PJW1oLPeEe6bTMIfH6713A" name="addDislike" method="PUT" path="/videos/videoId/dislikes/userId">
+      <requestParameters xmi:id="_SKwfMLPgEe6bTMIfH6713A" name="request video id" fieldType="long"/>
+      <requestParameters xmi:id="_VsAYYLPgEe6bTMIfH6713A" name="request user id" fieldType="long"/>
+      <responseParameters xmi:id="_SasYoLPgEe6bTMIfH6713A" response="user liked video">
+        <body xmi:id="_bBVeULPgEe6bTMIfH6713A" name="response" fieldType="void"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_TZktoLPeEe6bTMIfH6713A" name="addLike" method="PUT" path="/videos/videoId/likes/userId">
+      <requestParameters xmi:id="_e2X2MLPgEe6bTMIfH6713A" name="request video id" fieldType="long"/>
+      <requestParameters xmi:id="_gLSasLPgEe6bTMIfH6713A" name="request user id" fieldType="long"/>
+      <responseParameters xmi:id="_gvbCgLPgEe6bTMIfH6713A" response="user disliked video">
+        <body xmi:id="_gvbpkLPgEe6bTMIfH6713A" name="response" fieldType="void"/>
+      </responseParameters>
+    </apiResources>
+  </microservices>
+  <microservices xmi:id="_R_SZkLPhEe6bTMIfH6713A" name="trending-hashtag-microservice" subbedTo="_W9FtILPdEe6bTMIfH6713A _ZKQvULPdEe6bTMIfH6713A _YI2_4LPhEe6bTMIfH6713A" publishesTo="_YI2_4LPhEe6bTMIfH6713A">
+    <apiResources xmi:id="_kZY9YLPhEe6bTMIfH6713A" name="list" path="/users">
+      <requestParameters xmi:id="_CPzMcLPiEe6bTMIfH6713A" name="request" fieldType="void"/>
+      <responseParameters xmi:id="_CfB7QLPiEe6bTMIfH6713A" response="users">
+        <body xmi:id="_GjKfELPiEe6bTMIfH6713A" name="response" fieldType="Iterable&lt;Users>"/>
+      </responseParameters>
+    </apiResources>
+  </microservices>
+  <microservices xmi:id="_owZZ4LPhEe6bTMIfH6713A" name="subscription-microservice" subbedTo="_cme-kLPdEe6bTMIfH6713A _YjylMLPdEe6bTMIfH6713A _ZKQvULPdEe6bTMIfH6713A" publishesTo="_sQRaELPhEe6bTMIfH6713A _1DgKQLPhEe6bTMIfH6713A">
+    <apiResources xmi:id="_HskhsLPjEe6bTMIfH6713A" name="addSubscription" method="PUT" path="/users/userId/subbedTo/hashtag">
+      <requestParameters xmi:id="_HskhsbPjEe6bTMIfH6713A" name="request hashtag" fieldType="String"/>
+      <requestParameters xmi:id="_HskhsrPjEe6bTMIfH6713A" name="request user id" fieldType="long"/>
+      <responseParameters xmi:id="_Hskhs7PjEe6bTMIfH6713A" response="user subscribed to hashtag">
+        <body xmi:id="_HskhtLPjEe6bTMIfH6713A" name="response" fieldType="void"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_Iwn_sLPjEe6bTMIfH6713A" name="removeSubscription" method="PUT" path="/users/userId/subbedTo/hashtag">
+      <requestParameters xmi:id="_Iwn_sbPjEe6bTMIfH6713A" name="request hashtag" fieldType="String"/>
+      <requestParameters xmi:id="_Iwn_srPjEe6bTMIfH6713A" name="request user id" fieldType="long"/>
+      <responseParameters xmi:id="_Iwn_s7PjEe6bTMIfH6713A" response="user unsubscribed from hashtag">
+        <body xmi:id="_Iwn_tLPjEe6bTMIfH6713A" name="response" fieldType="void"/>
+      </responseParameters>
+    </apiResources>
+    <apiResources xmi:id="_Jm3rMLPjEe6bTMIfH6713A" name="TopVideos" path="/videos/top">
+      <requestParameters xmi:id="_Jm3rMbPjEe6bTMIfH6713A" name="request number" fieldType="Pageable"/>
+      <responseParameters xmi:id="_Jm3rMrPjEe6bTMIfH6713A" response="top videos by like count descending">
+        <body xmi:id="_Jm3rM7PjEe6bTMIfH6713A" name="response" fieldType="List&lt;Video>"/>
+      </responseParameters>
+    </apiResources>
+  </microservices>
+  <eventStreams xmi:id="_W9FtILPdEe6bTMIfH6713A" name="viewedVideo">
+    <eventAssociated xmi:id="_hdWm4LPdEe6bTMIfH6713A" name="VideoViewedEvent">
+      <fields xmi:id="_uVeI0LPdEe6bTMIfH6713A" name="video" fieldType="Video"/>
+    </eventAssociated>
+  </eventStreams>
+  <eventStreams xmi:id="_YjylMLPdEe6bTMIfH6713A" name="postVideo">
+    <eventAssociated xmi:id="_hsRMoLPdEe6bTMIfH6713A" name="VideoPostEvent">
+      <fields xmi:id="_sJeLULPdEe6bTMIfH6713A" name="videoDetails" fieldType="VideoDTO"/>
+    </eventAssociated>
+  </eventStreams>
+  <eventStreams xmi:id="_ZKQvULPdEe6bTMIfH6713A" name="likeVideo">
+    <eventAssociated xmi:id="_h55Y8LPdEe6bTMIfH6713A" name="VideoLikeEvent">
+      <fields xmi:id="_pPTgQLPdEe6bTMIfH6713A" name="video" fieldType="Video"/>
+    </eventAssociated>
+  </eventStreams>
+  <eventStreams xmi:id="_cme-kLPdEe6bTMIfH6713A" name="userCreated">
+    <eventAssociated xmi:id="_iGK6YLPdEe6bTMIfH6713A" name="UserCreateEvent">
+      <fields xmi:id="_m8CdILPdEe6bTMIfH6713A" name="userDetails" fieldType="UserDTO"/>
+    </eventAssociated>
+  </eventStreams>
+  <eventStreams xmi:id="_YI2_4LPhEe6bTMIfH6713A" name="likedHashtag">
+    <eventAssociated xmi:id="_Z6ShQLPhEe6bTMIfH6713A" name="LikeHashtagEvent">
+      <fields xmi:id="_cBSC8LPhEe6bTMIfH6713A" name="hashtag" fieldType="Hashtag"/>
+    </eventAssociated>
+  </eventStreams>
+  <eventStreams xmi:id="_sQRaELPhEe6bTMIfH6713A" name="userSubscribedToHashtag">
+    <eventAssociated xmi:id="_wM_HQLPhEe6bTMIfH6713A" name="UserSubscribedToHashtagEvent">
+      <fields xmi:id="_y5E6ELPhEe6bTMIfH6713A" name="hashtag" fieldType="String"/>
+    </eventAssociated>
+  </eventStreams>
+  <eventStreams xmi:id="_1DgKQLPhEe6bTMIfH6713A" name="userUnsubscribedFromHashtag">
+    <eventAssociated xmi:id="_1DgKQbPhEe6bTMIfH6713A" name="UserUnsubscribedFromHashtagEvent">
+      <fields xmi:id="_1DgKQrPhEe6bTMIfH6713A" name="hashtag" fieldType="String"/>
+    </eventAssociated>
+  </eventStreams>
+</Model>

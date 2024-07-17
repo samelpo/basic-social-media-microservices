@@ -18,6 +18,7 @@ public class Video {
 	private Set<User> likes;
 	private Set<User> dislikes;
 	private Set<User> viewers;
+	private int likeCount;
 	
 	public Long getId() {
 		return id;
@@ -86,6 +87,12 @@ public class Video {
 
 	public void setDislikes(User user) {
 		this.dislikes.add(user);
+	}
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 
 	@Override

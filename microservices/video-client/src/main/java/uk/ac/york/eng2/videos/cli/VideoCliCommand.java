@@ -8,6 +8,12 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import uk.ac.york.eng2.videos.cli.videos.PostVideoCommand;
+import uk.ac.york.eng2.videos.cli.subscriptions.GetTopTenNextVideosPerHashtagCommand;
+import uk.ac.york.eng2.videos.cli.subscriptions.GetUsersSubCommand;
+import uk.ac.york.eng2.videos.cli.subscriptions.SubToHashtagCommand;
+import uk.ac.york.eng2.videos.cli.subscriptions.UnsubFromHashtagCommand;
+import uk.ac.york.eng2.videos.cli.trending.GetHashtagsCommand;
+import uk.ac.york.eng2.videos.cli.trending.TopTenLikedHashtagsCommand;
 import uk.ac.york.eng2.videos.cli.users.AddUserCommand;
 import uk.ac.york.eng2.videos.cli.users.GetUsersCommand;
 import uk.ac.york.eng2.videos.cli.videos.AddDislikeCommand;
@@ -25,6 +31,9 @@ import uk.ac.york.eng2.videos.cli.videos.ListByHashtagCommand;
         		GetUsersCommand.class, ListByCreatorCommand.class,
         		AddViewerCommand.class, GetViewersCommand.class,
         		AddLikeCommand.class, AddDislikeCommand.class,
+        		GetHashtagsCommand.class, TopTenLikedHashtagsCommand.class,
+        		SubToHashtagCommand.class, UnsubFromHashtagCommand.class,
+        		GetTopTenNextVideosPerHashtagCommand.class, GetUsersSubCommand.class,
         })
 public class VideoCliCommand implements Runnable {
 

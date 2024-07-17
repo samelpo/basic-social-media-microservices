@@ -32,7 +32,8 @@ public interface UsersClient {
 	
 	@Put("/{id}")
 	HttpResponse<Void> updateUser(long id, @Body UserDTO userDetails);
-
+	
 	@Delete("/{id}")
 	HttpResponse<Void> deleteUser(long id);
+	
 }

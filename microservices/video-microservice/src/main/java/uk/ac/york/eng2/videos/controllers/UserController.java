@@ -16,6 +16,7 @@ import jakarta.inject.Inject;
 import uk.ac.york.eng2.videos.domain.User;
 import uk.ac.york.eng2.videos.domain.Video;
 import uk.ac.york.eng2.videos.dto.UserDTO;
+import uk.ac.york.eng2.videos.events.UsersProducer;
 import uk.ac.york.eng2.videos.repositories.UsersRepository;
 import uk.ac.york.eng2.videos.repositories.VideosRepository;
 
@@ -28,6 +29,9 @@ public class UserController {
 	@Inject
 	UsersRepository repo;
 	
+	@Inject
+	UsersProducer producer;
+	
 	@Get("/")
 	public Iterable<User> list() {
 		return repo.findAll();
@@ -37,7 +41,10 @@ public class UserController {
 	public HttpResponse<Void> add(@Body UserDTO userDetails) {
 		User user = new User();
 		user.setUsername(userDetails.getUsername());
+		
 		repo.save(user);
+		producer.userCreated(user.getId(), userDetails);
+		
 		return HttpResponse.created(URI.create("/users/" + user.getId()));
 	}
 

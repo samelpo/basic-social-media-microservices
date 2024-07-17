@@ -12,6 +12,7 @@ public class User {
 	private Long id;
 	private String username;
 	private Set<Video> viewedVideos;
+	private Set<String> subbedTo;
 	
 	public Long getId() {
 		return id;
@@ -36,9 +37,18 @@ public class User {
 	public void setViewedVideos(Set<Video> viewedVideos) {
 		this.viewedVideos = viewedVideos;
 	}
+	
+	public Set<String> getSubbedTo() {
+		return subbedTo;
+	}
+	
+	public void setSubbedTo(Set<String> subbedTo) {
+		this.subbedTo = subbedTo;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username +"]";
+		return "User [id=" + id + ", username=" + username + ", viewedVideos=" + viewedVideos + ", subbedTo=" + subbedTo
+				+ "]";
 	}
 }
